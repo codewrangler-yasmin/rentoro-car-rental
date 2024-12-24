@@ -1,8 +1,49 @@
-# React + Vite
+# Rentoro - Car Rental System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Purpose
+The Car Rental System is a feature-rich, user-centric platform that allows users to manage car rentals seamlessly. The platform enables users to add, update, and delete cars for rental, search and book cars based on availability, and review cars they have rented. The system provides real-time updates on car availability and booking statuses.
 
-Currently, two official plugins are available:
+## Live URL
+[Live Demo](#) (Add the deployed link here once available)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
+1. **User Authentication**:
+   - Secure sign-up, login, and logout functionality using Firebase Authentication & JWT.
+
+2. **Car Management**:
+   - Users can add, update, and delete car listings with details like name, brand, type, price, availability, and images.
+
+3. **Search and Booking**:
+   - Search cars with filters like price range, brand, type, and availability.
+   - Book cars for specific date ranges with real-time updates on availability.
+
+4. **Reviews**:
+   - Users can leave reviews and ratings for cars they have rented.
+   - Display reviews with user names and timestamps.
+
+5. **Real-Time Updates**:
+   - Real-time updates on car availability and booking statuses using WebSockets or Firebase.
+
+## Technologies Used
+### Frontend
+- **HTML5**, **CSS3**, **JavaScript**
+- **React.js**: For building the user interface.
+- **React Router**: For routing and navigation.
+- **TailwindCSS** or **Material-UI**: For styling and design consistency.
+
+### Backend
+- **Node.js**: Server-side runtime.
+- **Express.js**: Framework for creating RESTful APIs.
+- **MongoDB**: NoSQL database for storing users, cars, bookings, and reviews.
+- **JWT**: For secure authentication and session management.
+
+### Additional Tools
+- **Firebase Authentication**: For user authentication.
+- **Cloud Storage**: To store and retrieve car images.
+- **Cloud Functions**: For backend operations like booking validations.
+
+### Real-Time Updates
+- **Firebase Firestore** or **WebSockets**: For synchronizing booking and availability changes across the platform.
+
+
+
