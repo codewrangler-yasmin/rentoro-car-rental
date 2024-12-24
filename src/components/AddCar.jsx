@@ -2,7 +2,10 @@ const AddCar = () => {
   return (
     <div>
       <div className="mx-auto p-10 rounded-2xl border border-gray-200 bg-gray-50 font-accent">
-        <h2 className="text-2xl font-bold mb-4">Add Car Details</h2>
+        <h2 className="text-xl font-bold">Add Car Details</h2>
+        <p className="text-gray-500 mb-6">
+          Provide Complete Details to List Your Car for Rentals.
+        </p>
         <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Car Model */}
           <div>
@@ -67,6 +70,44 @@ const AddCar = () => {
               type="text"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter location"
+            />
+          </div>
+          {/* Mileage */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Mileage</label>
+            <input
+              type="text"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter Mileage"
+            />
+          </div>
+          {/* Fuel Type */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Fuel Type</label>
+            <input
+              type="text"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter Fuel Type"
+            />
+          </div>
+          {/* Transmission */}
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Transmission
+            </label>
+            <input
+              type="text"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter Transmission"
+            />
+          </div>
+          {/* Color */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Color</label>
+            <input
+              type="text"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter Color"
             />
           </div>
 

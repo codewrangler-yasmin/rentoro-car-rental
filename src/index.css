@@ -4,3 +4,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this in your global CSS */
+.MuiPopover-root,
+.MuiPopper-root {
+  z-index: 1050 !important; /* Ensure it is higher than the modal's backdrop */
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: #050b21;
+}

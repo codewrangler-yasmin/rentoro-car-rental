@@ -10,6 +10,9 @@ import AddCar from "../components/AddCar";
 import MyCars from "../components/MyCars";
 import MyBookings from "../components/MyBookings";
 import UpdateCar from "../components/UpdateCar";
+import BookingRequests from "../components/BookingRequests";
+import MyProfile from "../components/MyProfile";
+import CarDetails from "../components/CarDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,10 @@ const router = createBrowserRouter([
         path: "allCars",
         element: <AllCars />,
       },
+      {
+        path: "/carDetails",
+        element: <CarDetails />,
+      },
     ],
   },
   {
@@ -39,6 +46,7 @@ const router = createBrowserRouter([
         path: "/addCar",
         element: <AddCar />,
       },
+
       {
         path: "/myCars",
         element: <MyCars />,
@@ -54,6 +62,14 @@ const router = createBrowserRouter([
       {
         path: "/myBookings",
         element: <MyBookings />,
+      },
+      {
+        path: "/bookingRequests",
+        element: <BookingRequests />,
+      },
+      {
+        path: "/myProfile",
+        element: <MyProfile />,
       },
     ],
   },

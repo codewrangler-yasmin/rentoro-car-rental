@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import Testimonials from "../components/Testimonials";
 
 const Home = () => {
   return (
@@ -7,6 +8,9 @@ const Home = () => {
         <title>Home - Rentoro Car Rental</title>
       </Helmet>
       <h1>This is home</h1>
+      <div className="container mx-auto">
+        <Testimonials />
+      </div>
     </div>
   );
 };

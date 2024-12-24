@@ -1,3 +1,6 @@
+import { AiOutlineEdit } from "react-icons/ai";
+import { BsTrash3Fill } from "react-icons/bs";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
 const MyCars = () => {
@@ -30,20 +33,36 @@ const MyCars = () => {
   ];
 
   return (
-    <div className="p-10 rounded-2xl border border-gray-200 bg-gray-50  font-accent">
+    <div className="p-10 rounded-2xl border border-gray-200 bg-gray-50 font-accent">
       {/* Sorting Options */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold text-gray-700">My Listed Cars</h2>
-        <select
-          className="p-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          defaultValue="newest"
-        >
-          <option value="">Sort By Price/Date</option>
-          <option value="newest">Newest By Date</option>
-          <option value="oldest">Oldest By Date</option>
-          <option value="lowestPrice">Lowest By Price</option>
-          <option value="highestPrice">Highest By Price</option>
-        </select>
+        <div>
+          <h2 className="text-xl font-bold text-gray-700">My Listed Cars</h2>
+          <p className="text-gray-500 mb-6">
+            Update and Manage All Your Listed Cars.
+          </p>
+        </div>
+        {/* Search and Sort */}
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          {/* Search Bar */}
+          <div className="flex items-center w-full md:w-auto">
+            <input
+              type="text"
+              placeholder="Search Cars e.g. Audi Q7"
+              className="text-gray-400 flex-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-600 focus:outline-none"
+            />
+          </div>
+          <select
+            className="px-4 py-2 text-gray-400 bg-white border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            defaultValue="newest"
+          >
+            <option value="">Sort By Price/Date</option>
+            <option value="newest">Newest By Date</option>
+            <option value="oldest">Oldest By Date</option>
+            <option value="lowestPrice">Lowest By Price</option>
+            <option value="highestPrice">Highest By Price</option>
+          </select>
+        </div>
       </div>
 
       {/* Display No Cars */}
@@ -60,88 +79,114 @@ const MyCars = () => {
           </p>
         </div>
       ) : (
-        <>
-          {/* Table Header */}
-          <div className="grid grid-cols-6 gap-4 px-6 py-3 text-gray-600 bg-blue-50 rounded-lg font-semibold">
-            <div>Car Image</div>
-            <div>Car Model</div>
-            <div>Daily Rental Price</div>
-            <div>Availability</div>
-            <div>Date Added</div>
-            <div>Action</div>
-          </div>
-
-          {/* Table Rows */}
-          {cars.map((car) => (
-            <div
-              key={car.id}
-              className="grid grid-cols-6 gap-4 items-center px-6 py-4 bg-white rounded-lg shadow-sm my-2"
-            >
-              {/* Car Image */}
-              <div>
-                <img
-                  src={car.image}
-                  alt={car.model}
-                  className="w-16 h-16 rounded-lg object-cover"
-                />
-              </div>
-
-              {/* Car Model */}
-              <div>{car.model}</div>
-
-              {/* Daily Rental Price */}
-              <div>{car.dailyPrice}</div>
-
-              {/* Availability */}
-              <div
-                className={`font-semibold ${
-                  car.availability === "Available"
-                    ? "text-green-500"
-                    : "text-red-500"
-                }`}
-              >
-                {car.availability}
-              </div>
-
-              {/* Date Added */}
-              <div>{car.dateAdded}</div>
-
-              {/* Action */}
-              <div className="flex gap-3">
-                <button className="p-2 text-white bg-red-500 rounded-full hover:bg-red-600">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-4 h-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M6.5 4a.5.5 0 01.5.5V5h6v-.5a.5.5 0 011 0V5h1.5A1.5 1.5 0 0117 6.5v1a.5.5 0 01-1 0v-1H4v1a.5.5 0 11-1 0v-1A1.5.5 0 014.5 5H6v-.5a.5.5 0 011-.5zm8.828 3H4.172L5 16.828c.073.48.482.857.972.857h7.056c.49 0 .899-.378.972-.857L15.328 7z"
-                      clipRule="evenodd"
+        <div className="overflow-x-auto">
+          {/* Table */}
+          <table className="w-full border-collapse border border-gray-200 rounded-lg shadow-sm">
+            {/* Table Header */}
+            <thead className="bg-blue-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-gray-600 font-semibold border-b"></th>
+                <th className="px-6 py-3 text-left text-gray-600 font-semibold border-b">
+                  Car Model
+                </th>
+                <th className="px-6 py-3 text-left text-gray-600 font-semibold border-b">
+                  Daily Rental Price
+                </th>
+                <th className="px-6 py-3 text-left text-gray-600 font-semibold border-b">
+                  Availability
+                </th>
+                <th className="px-6 py-3 text-left text-gray-600 font-semibold border-b">
+                  Date Added
+                </th>
+                <th className="px-6 py-3 text-left text-gray-600 font-semibold border-b">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {cars.map((car) => (
+                <tr key={car.id} className="bg-white hover:bg-gray-50">
+                  {/* Car Image */}
+                  <td className="px-6 py-4 border-b">
+                    <img
+                      src={car.image}
+                      alt={car.model}
+                      className="w-16 h-16 rounded-lg object-cover"
                     />
-                  </svg>
-                </button>
-                <button className="p-2 text-white bg-blue-500 rounded-full hover:bg-blue-600">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-4 h-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
+                  </td>
+                  {/* Car Model */}
+                  <td className="px-6 py-4 border-b">{car.model}</td>
+                  {/* Daily Rental Price */}
+                  <td className="px-6 py-4 border-b">{car.dailyPrice}</td>
+                  {/* Availability */}
+                  <td
+                    className={`px-6 py-4 border-b font-semibold ${
+                      car.availability === "Available"
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
                   >
-                    <path d="M17.414 1.586a2 2 0 00-2.828 0L13.5 2.672 16.328 5.5l1.086-1.086a2 2 0 000-2.828z" />
-                    <path
-                      fillRule="evenodd"
-                      d="M11 6l-9.707 9.707a1 1 0 001.414 1.414L6 13.414l2.586 2.586 7.293-7.293L11 6zm-7.586 8.586L11 7l2.586 2.586L8 16H3.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          ))}
-        </>
+                    {car.availability}
+                  </td>
+                  {/* Date Added */}
+                  <td className="px-6 py-4 border-b">{car.dateAdded}</td>
+                  {/* Actions */}
+                  <td className="px-6 py-4 border-b">
+                    <div className="flex gap-3">
+                      {/* Edit Button */}
+                      <button className="p-2 text-white bg-blue-500 rounded-full hover:bg-blue-600">
+                        <AiOutlineEdit />
+                      </button>
+                      {/* Cancel Booking Button */}
+                      <button className="p-2 text-white bg-red-500 rounded-full hover:bg-red-600">
+                        <BsTrash3Fill />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
+
+      <div className="flex flex-col items-center justify-center space-y-4 mt-8">
+        {/* Pagination Controls */}
+        <div className="flex items-center space-x-2">
+          {/* Previous Button */}
+          <button className="w-16 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-200 text-gray-900">
+            <LuChevronLeft />
+          </button>
+
+          {/* Page Numbers */}
+          <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 text-sm hover:bg-gray-200">
+            1
+          </button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-full bg-black text-white">
+            2
+          </button>
+          <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 text-sm hover:bg-gray-200">
+            3
+          </button>
+
+          <span className="w-8 h-8 flex items-center justify-center text-gray-500">
+            ...
+          </span>
+          <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 text-sm hover:bg-gray-200">
+            20
+          </button>
+
+          {/* Next Button */}
+          <button className="w-16 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-200 text-gray-900">
+            <LuChevronRight />
+          </button>
+        </div>
+
+        {/* Results Info */}
+        <div className="text-sm text-gray-500">
+          Showing results 1–30 of 1,415
+        </div>
+      </div>
     </div>
   );
 };

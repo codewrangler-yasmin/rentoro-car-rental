@@ -8,11 +8,11 @@ const DashboardLayout = () => {
 
       <div className="bg-primary">
         <div className="w-[95%] mx-auto grid grid-cols-12">
-          <div className="h-screen col-span-2 text-base-200 py-12">
+          <div className="min-h-screen col-span-2 text-base-200 py-12">
             <DashboardSidebar />
           </div>
           <div className="col-span-10">
-            <div className="h-screen bg-base-100 rounded-3xl p-12">
+            <div className="min-h-screen bg-base-100 rounded-3xl p-12">
               <Outlet />
             </div>
             <div>

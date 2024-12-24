@@ -20,7 +20,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-primary text-white font-accent">
+    <div className="bg-primary text-white font-accent py-5">
       <div className="w-[95%] mx-auto">
         <div className="navbar">
           <div className="navbar-start">
@@ -62,8 +62,8 @@ const Navbar = () => {
               {navLinks}
             </ul>
             <NavLink to="/dashboard">
-              <button className="h-10 w-10 flex justify-center items-center rounded-full bg-base-200 text-gray-500 text-lg">
-                <FiUser />
+              <button className="hover:bg-white hover:text-primary transition-all duration-200 flex items-center gap-2 border rounded-full px-5 py-2">
+                <FiUser /> <span>Login</span>
               </button>
             </NavLink>
           </div>
