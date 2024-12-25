@@ -79,7 +79,7 @@ const Navbar = () => {
             <ul className="flex gap-4 justify-center items-center px-1 text-sm">
               {navLinks}
             </ul>
-            <NavLink to="/dashboard">
+            <NavLink to="/login">
               <button className="hover:bg-white hover:text-primary transition-all duration-200 flex items-center gap-2 border rounded-full px-5 py-2">
                 <Tooltip title="Login" className="flex items-center gap-2">
                   <FiUser />
