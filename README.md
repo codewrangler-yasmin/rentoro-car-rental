@@ -24,12 +24,20 @@ The Car Rental System is a feature-rich, user-centric platform that allows users
 5. **Real-Time Updates**:
    - Real-time updates on car availability and booking statuses using WebSockets or Firebase.
 
+6. **Interactive Animations**:
+   - Enhance user experience with **Lottie React** animations, providing smooth, engaging visuals during interactions like car bookings and transitions.
+
+7. **Image Carousels**:
+   - Users can view car images in an interactive carousel with **Swiper Slider**, allowing smooth and touch-friendly browsing of car galleries.
+
 ## Technologies Used
 ### Frontend
 - **HTML5**, **CSS3**, **JavaScript**
 - **React.js**: For building the user interface.
 - **React Router**: For routing and navigation.
 - **TailwindCSS** or **Material-UI**: For styling and design consistency.
+- **Lottie React**: For integrating engaging animations.
+- **Swiper Slider**: For creating touch-friendly image carousels.
 
 ### Backend
 - **Node.js**: Server-side runtime.
@@ -44,6 +52,3 @@ The Car Rental System is a feature-rich, user-centric platform that allows users
 
 ### Real-Time Updates
 - **Firebase Firestore** or **WebSockets**: For synchronizing booking and availability changes across the platform.
-
-
-
