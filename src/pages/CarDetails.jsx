@@ -6,9 +6,9 @@ import { PiClockClockwiseFill } from "react-icons/pi";
 import { RiFileList2Line } from "react-icons/ri";
 import { TbTransformPointBottomLeft } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import BookingForm from "./BookingForm";
 import { IoClose } from "react-icons/io5";
-import ReviewForm from "./ReviewForm";
+import ReviewForm from "../components/ReviewForm";
+import BookingForm from "../components/BookingForm";
 
 const CarDetails = () => {
   return (

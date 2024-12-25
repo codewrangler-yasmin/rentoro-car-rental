@@ -1,7 +1,11 @@
 import { FiUser } from "react-icons/fi";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+  const isHomePage = pathname === "/";
+
   const navLinks = (
     <>
       <li>
@@ -20,7 +24,13 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-primary text-white font-accent py-5">
+    <div
+      className={`${
+        isHomePage
+          ? "lg:absolute lg:bg-transparent lg:z-50"
+          : "bg-primary text-white"
+      } w-full mx-auto font-accent py-5`}
+    >
       <div className="w-[95%] mx-auto">
         <div className="navbar">
           <div className="navbar-start">
@@ -63,7 +73,10 @@ const Navbar = () => {
             </ul>
             <NavLink to="/dashboard">
               <button className="hover:bg-white hover:text-primary transition-all duration-200 flex items-center gap-2 border rounded-full px-5 py-2">
-                <FiUser /> <span>Login</span>
+                <Tooltip title="Login" className="flex items-center gap-2">
+                  <FiUser />
+                  <span>Login</span>
+                </Tooltip>
               </button>
             </NavLink>
           </div>

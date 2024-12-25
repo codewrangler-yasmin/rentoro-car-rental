@@ -1,6 +1,6 @@
+import Pagination from "@mui/material/Pagination";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsTrash3Fill } from "react-icons/bs";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
 const MyCars = () => {
@@ -152,39 +152,8 @@ const MyCars = () => {
 
       <div className="flex flex-col items-center justify-center space-y-4 mt-8">
         {/* Pagination Controls */}
-        <div className="flex items-center space-x-2">
-          {/* Previous Button */}
-          <button className="w-16 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-200 text-gray-900">
-            <LuChevronLeft />
-          </button>
-
-          {/* Page Numbers */}
-          <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 text-sm hover:bg-gray-200">
-            1
-          </button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full bg-black text-white">
-            2
-          </button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 text-sm hover:bg-gray-200">
-            3
-          </button>
-
-          <span className="w-8 h-8 flex items-center justify-center text-gray-500">
-            ...
-          </span>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 text-sm hover:bg-gray-200">
-            20
-          </button>
-
-          {/* Next Button */}
-          <button className="w-16 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-200 text-gray-900">
-            <LuChevronRight />
-          </button>
-        </div>
-
-        {/* Results Info */}
-        <div className="text-sm text-gray-500">
-          Showing results 1–30 of 1,415
+        <div className="flex justify-center items-center">
+          <Pagination count={10} variant="outlined" color="primary" />
         </div>
       </div>
     </div>

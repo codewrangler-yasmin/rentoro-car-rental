@@ -14,3 +14,15 @@
 .swiper-button-next {
   color: #050b21;
 }
+.carousel-container {
+  width: 100vw; /* Full width of the viewport */
+  max-width: 100%;
+  overflow: hidden; /* Prevent horizontal scroll if images overflow */
+}
+
+.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Full width of the container */
+}

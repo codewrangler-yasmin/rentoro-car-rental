@@ -4,15 +4,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const Testimonials = () => {
-  const testimonials = [
+const Reviews = () => {
+  const reviews = [
     {
       title: "Great Work",
       content:
         "Amazing design, easy to customize and a design quality superlative account on its cloud platform for the optimized performance. And we didn’t on our original designs.",
       name: "Leslie Alexander",
       company: "Nintendo",
-      image: "https://via.placeholder.com/150", // Replace with actual image
+      image: "https://via.placeholder.com/80", // Replace with actual image
     },
     {
       title: "Awesome Design",
@@ -20,7 +20,7 @@ const Testimonials = () => {
         "Amazing design, easy to customize and a design quality superlative account on its cloud platform for the optimized performance. And we didn’t on our original designs.",
       name: "Floyd Miles",
       company: "Bank of America",
-      image: "https://via.placeholder.com/150", // Replace with actual image
+      image: "https://via.placeholder.com/80", // Replace with actual image
     },
     {
       title: "Perfect Quality",
@@ -28,7 +28,7 @@ const Testimonials = () => {
         "Amazing design, easy to customize and a design quality superlative account on its cloud platform for the optimized performance. And we didn’t on our original designs.",
       name: "Dianne Russell",
       company: "Facebook",
-      image: "https://via.placeholder.com/150", // Replace with actual image
+      image: "https://via.placeholder.com/80", // Replace with actual image
     },
     {
       title: "Perfect Quality",
@@ -36,7 +36,7 @@ const Testimonials = () => {
         "Amazing design, easy to customize and a design quality superlative account on its cloud platform for the optimized performance. And we didn’t on our original designs.",
       name: "Dianne Russell",
       company: "Facebook",
-      image: "https://via.placeholder.com/150", // Replace with actual image
+      image: "https://via.placeholder.com/80", // Replace with actual image
     },
     {
       title: "Perfect Quality",
@@ -44,19 +44,16 @@ const Testimonials = () => {
         "Amazing design, easy to customize and a design quality superlative account on its cloud platform for the optimized performance. And we didn’t on our original designs.",
       name: "Dianne Russell",
       company: "Facebook",
-      image: "https://via.placeholder.com/150", // Replace with actual image
+      image: "https://via.placeholder.com/80", // Replace with actual image
     },
   ];
 
   return (
     <div className="container mx-auto py-12 px-6">
       {/* Section Title */}
-      <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+      <h2 className="text-3xl text-primary font-bold mb-10">
         What our customers say
       </h2>
-      <p className="text-center text-gray-500 mb-8">
-        Rated 4.7 / 5 based on 28,370 reviews Showing our 4 & 5 star reviews
-      </p>
 
       {/* Swiper */}
       <Swiper
@@ -64,7 +61,7 @@ const Testimonials = () => {
         slidesPerView={3}
         pagination={{ clickable: true }}
         autoplay={{
-          delay: 2500,
+          delay: 3500,
           disableOnInteraction: false,
         }}
         navigation={true}
@@ -74,26 +71,22 @@ const Testimonials = () => {
           1024: { slidesPerView: 3 },
         }}
       >
-        {testimonials.map((testimonial, index) => (
+        {reviews.map((review, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-white shadow-lg rounded-lg p-6 text-center mb-10">
+            <div className="bg-white shadow-lg rounded-lg p-6 mb-10">
               <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                {testimonial.title}
+                {review.title}
               </h3>
-              <p className="text-gray-600 italic mb-4">
-                “{testimonial.content}”
-              </p>
-              <div className="flex items-center justify-center gap-4 mt-4">
+              <p className="text-gray-600 italic mb-4">“{review.content}”</p>
+              <div className="flex items-center gap-4 mt-4">
                 <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
+                  src={review.image}
+                  alt={review.name}
                   className="w-12 h-12 rounded-full"
                 />
                 <div className="text-left">
-                  <p className="font-medium text-gray-800">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-gray-500 text-sm">{testimonial.company}</p>
+                  <p className="font-medium text-gray-800">{review.name}</p>
+                  <p className="text-gray-500 text-sm">{review.company}</p>
                 </div>
               </div>
             </div>
@@ -104,4 +97,4 @@ const Testimonials = () => {
   );
 };
 
-export default Testimonials;
+export default Reviews;

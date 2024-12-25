@@ -3,16 +3,16 @@ import Home from "../pages/Home";
 import AllCars from "../pages/AllCars";
 import Main from "../layouts/Main";
 import NotFound from "../pages/NotFound";
-import Dashboard from "../components/Dashboard";
+import Dashboard from "../pages/Dashboard";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyFavorites from "../components/MyFavorites";
-import AddCar from "../components/AddCar";
-import MyCars from "../components/MyCars";
-import MyBookings from "../components/MyBookings";
-import UpdateCar from "../components/UpdateCar";
-import BookingRequests from "../components/BookingRequests";
-import MyProfile from "../components/MyProfile";
-import CarDetails from "../components/CarDetails";
+import AddCar from "../pages/AddCar";
+import MyCars from "../pages/MyCars";
+import MyBookings from "../pages/MyBookings";
+import UpdateCar from "../pages/UpdateCar";
+import BookingRequests from "../pages/BookingRequests";
+import MyProfile from "../pages/MyProfile";
+import CarDetails from "../pages/CarDetails";
 
 const router = createBrowserRouter([
   {

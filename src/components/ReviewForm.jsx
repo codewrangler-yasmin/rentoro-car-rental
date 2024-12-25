@@ -1,29 +1,10 @@
 const ReviewForm = () => {
   return (
     <div className="max-w-3xl mx-auto bg-gray-100 p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold text-gray-800">Leave a Reply</h2>
+      <h2 className="text-2xl font-semibold text-gray-800">Leave a Review</h2>
       <p className="text-sm text-gray-600 mt-1">
         Your email address will not be published. Required fields are marked *
       </p>
-
-      {/* Star Rating Section */}
-      <div className="grid grid-cols-2 gap-6 mt-6">
-        {["Value For The Money", "Reliability"].map((label) => (
-          <div key={label}>
-            <p className="text-gray-700 font-medium">{label}</p>
-            <div className="flex space-x-1 mt-1">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <span
-                  key={index}
-                  className="text-yellow-400 text-xl cursor-pointer"
-                >
-                  ★
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
 
       {/* Form Fields */}
       <div className="mt-8 space-y-4">

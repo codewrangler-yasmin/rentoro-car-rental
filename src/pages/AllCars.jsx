@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IoGridOutline } from "react-icons/io5";
 import { FaThList } from "react-icons/fa";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import Pagination from "@mui/material/Pagination";
 import CarCardGrid from "../components/CarCardGrid";
 import CardCardTabular from "../components/CardCardTabular";
 
@@ -84,42 +84,9 @@ const AllCars = () => {
       <div className="grid grid-cols-12 gap-5 my-12">
         {view === "grid" ? <CarCardGrid /> : <CardCardTabular />}
       </div>
-      <div className="flex flex-col items-center justify-center space-y-4 mt-8">
-        {/* Pagination Controls */}
-        <div className="flex items-center space-x-2">
-          {/* Previous Button */}
-          <button className="w-16 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-200 text-gray-900">
-            <LuChevronLeft />
-          </button>
 
-          {/* Page Numbers */}
-          <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 text-sm hover:bg-gray-200">
-            1
-          </button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full bg-black text-white">
-            2
-          </button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 text-sm hover:bg-gray-200">
-            3
-          </button>
-
-          <span className="w-8 h-8 flex items-center justify-center text-gray-500">
-            ...
-          </span>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 text-sm hover:bg-gray-200">
-            20
-          </button>
-
-          {/* Next Button */}
-          <button className="w-16 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-200 text-gray-900">
-            <LuChevronRight />
-          </button>
-        </div>
-
-        {/* Results Info */}
-        <div className="text-sm text-gray-500">
-          Showing results 1–30 of 1,415
-        </div>
+      <div className="flex justify-center items-center">
+        <Pagination count={10} variant="outlined" color="primary" />
       </div>
     </div>
   );
