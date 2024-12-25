@@ -3,6 +3,7 @@ import Reviews from "../components/Reviews";
 import Banner from "../components/Banner";
 import Features from "../components/Features";
 import Promotions from "../components/Promotions";
+import LatestCars from "../components/LatestCars";
 
 const Home = () => {
   return (
@@ -18,10 +19,12 @@ const Home = () => {
           <Features />
         </div>
       </section>
-      <section className="container mx-auto mt-20">
+      <section className="py-24 bg-primary mt-44 z-0">
+        <LatestCars />
+      </section>
+      <section className="container mx-auto">
         <Promotions />
       </section>
-      <section className="py-12 h-[675px] bg-primary mt-8"></section>
       <section className="container mx-auto">
         <Reviews />
       </section>

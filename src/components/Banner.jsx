@@ -3,7 +3,7 @@ import Carousel from "./Carousel";
 import { BsFuelPump } from "react-icons/bs";
 import { TbTransformPointBottomLeft } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { FaClockRotateLeft } from "react-icons/fa6";
+import { PiClockCounterClockwiseLight } from "react-icons/pi";
 
 const slides = [
   "https://i.ibb.co.com/1rHYG1h/2024-Mercedes-Benz-E-Class.jpg",
@@ -39,16 +39,23 @@ const Banner = () => {
             </Slide>
             <Fade delay={1000} cascade damping={0.1}>
               <div className="w-[30%] py-3 my-3 text-white flex justify-between items-center gap-3">
-                <span className="flex flex-col items-center">
-                  <FaClockRotateLeft />
+                <span className="flex flex-col">
+                  <span className="text-4xl">
+                    <PiClockCounterClockwiseLight />
+                  </span>
                   <span className="text-lg">Good Mileage</span>
                 </span>{" "}
-                <span className="flex flex-col items-center">
-                  <BsFuelPump />
+                <span className="flex flex-col">
+                  <span className="text-3xl">
+                    <BsFuelPump />
+                  </span>
+
                   <span className="text-lg">Fuel Efficient</span>
                 </span>
-                <span className="flex flex-col items-center">
-                  <TbTransformPointBottomLeft />
+                <span className="flex flex-col">
+                  <span className="text-3xl">
+                    <TbTransformPointBottomLeft />
+                  </span>
                   <span className="text-lg">Effortless Driving</span>
                 </span>
               </div>

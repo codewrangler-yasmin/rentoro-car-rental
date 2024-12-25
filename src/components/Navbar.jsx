@@ -1,6 +1,7 @@
 import { FiUser } from "react-icons/fi";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
+import { IoCarSport } from "react-icons/io5";
 
 const Navbar = () => {
   const { pathname } = useLocation();
@@ -62,9 +63,16 @@ const Navbar = () => {
                 {navLinks}
               </ul>
             </div>
-            <a className="btn btn-ghost text-2xl font-oswald uppercase font-normal">
-              Rentoro
-            </a>
+
+            <Link
+              to="/"
+              className="flex items-center gap-2 text-2xl font-oswald uppercase font-normal"
+            >
+              <span className="text-5xl">
+                <IoCarSport />
+              </span>
+              <span>Rentoro</span>
+            </Link>
           </div>
 
           <div className="navbar-end gap-4">

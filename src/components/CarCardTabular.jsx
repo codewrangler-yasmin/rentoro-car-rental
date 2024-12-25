@@ -5,19 +5,24 @@ import { PiClockClockwiseFill } from "react-icons/pi";
 import { TbTransformPointBottomLeft } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
-const CardCardTabular = () => {
+const CarCardTabular = () => {
   return (
     <div className="col-span-12 flex flex-col md:flex-row bg-white rounded-lg shadow-md overflow-hidden">
       {/* Image Section */}
       <div className="relative w-full md:w-1/3">
         <img
-          src="https://i.ibb.co.com/8mqd50K/1600.webp" // Replace with the actual car image URL
+          src="https://i.ibb.co.com/1rHYG1h/2024-Mercedes-Benz-E-Class.jpg" // Replace with the actual car image URL
           alt="Car"
           className="w-full h-full object-cover"
         />
-        <span className="absolute top-2 left-2 bg-green-600 text-white text-sm font-medium px-3 py-1 rounded-full">
-          Available
-        </span>
+        <div className="absolute top-2 left-2 flex gap-3">
+          <span className=" bg-green-500 text-white text-sm font-medium px-3 py-1 rounded-full">
+            Available
+          </span>
+          <span className=" bg-blue-500 text-white text-sm font-medium px-3 py-1 rounded-full">
+            0 Booked
+          </span>
+        </div>
       </div>
 
       {/* Content Section */}
@@ -83,4 +88,4 @@ const CardCardTabular = () => {
   );
 };
 
-export default CardCardTabular;
+export default CarCardTabular;

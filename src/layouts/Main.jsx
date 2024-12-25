@@ -4,18 +4,22 @@ import Footer from "../components/Footer";
 
 const Main = () => {
   return (
-    <div className="font-accent bg-primary text-base-200">
-      {/* Navbar */}
-      <Navbar />
+    <section className="font-accent bg-primary text-base-200">
+      <header>
+        {/* Navbar */}
+        <Navbar />
+      </header>
       {/* Outlet */}
-      <div className="">
+      <main className="">
         <div className="min-h-[calc(100vh-306px)] bg-base-200 rounded-[80px]">
           <Outlet />
         </div>
-      </div>
-      {/* Footer */}
-      <Footer />
-    </div>
+      </main>
+      <footer>
+        {/* Footer */}
+        <Footer />
+      </footer>
+    </section>
   );
 };
 

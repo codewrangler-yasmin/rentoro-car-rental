@@ -48,7 +48,12 @@ const BookingRequests = () => {
 
   return (
     <div className="p-10 rounded-2xl border border-gray-200 bg-gray-50 font-accent">
-      <h2 className="text-xl font-bold text-gray-700">Booking Requests</h2>
+      <h2 className="text-xl font-bold text-gray-700 flex gap-3">
+        Booking Requests
+        <span className="bg-blue-200 text-blue-600 text-sm font-medium px-3 py-1 rounded-full">
+          0 Requests
+        </span>
+      </h2>
 
       <p className="text-gray-500 mb-6">
         Review and Respond to Incoming Booking Requests.

@@ -66,12 +66,15 @@ const MyBookings = () => {
 
   return (
     <div className="p-10 rounded-2xl border border-gray-200 bg-gray-50 font-accent">
-      <h2 className="text-xl font-bold text-gray-700">My Bookings</h2>
-
+      <h2 className="text-xl font-bold text-gray-700 flex gap-3">
+        My Bookings{" "}
+        <span className="bg-blue-200 text-blue-600 text-sm font-medium px-3 py-1 rounded-full">
+          0 Bookings
+        </span>
+      </h2>{" "}
       <p className="text-gray-500 mb-6">
         Track and Manage All Your Current Bookings Seamlessly.
       </p>
-
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border border-gray-200 rounded-lg shadow-sm">
@@ -158,7 +161,6 @@ const MyBookings = () => {
           </tbody>
         </table>
       </div>
-
       {/* Modal for Modify Date */}
       {selectedBooking && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">

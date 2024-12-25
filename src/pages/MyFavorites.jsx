@@ -31,7 +31,12 @@ const MyFavorites = () => {
   return (
     <div className="p-10 rounded-2xl border border-gray-200 bg-gray-50 font-accent">
       {/* Title */}
-      <h2 className="text-xl font-bold text-gray-700">My Favorite Cars</h2>
+      <h2 className="text-xl font-bold text-gray-700 flex gap-3">
+        My Favorite Cars
+        <span className="bg-blue-200 text-blue-600 text-sm font-medium px-3 py-1 rounded-full">
+          0 Favorites
+        </span>
+      </h2>
       <p className="text-gray-500 mb-6">
         Manage and Review Your Saved Favorites.
       </p>

@@ -5,7 +5,7 @@ import Main from "../layouts/Main";
 import NotFound from "../pages/NotFound";
 import Dashboard from "../pages/Dashboard";
 import DashboardLayout from "../layouts/DashboardLayout";
-import MyFavorites from "../components/MyFavorites";
+import MyFavorites from "../pages/MyFavorites";
 import AddCar from "../pages/AddCar";
 import MyCars from "../pages/MyCars";
 import MyBookings from "../pages/MyBookings";
@@ -13,6 +13,8 @@ import UpdateCar from "../pages/UpdateCar";
 import BookingRequests from "../pages/BookingRequests";
 import MyProfile from "../pages/MyProfile";
 import CarDetails from "../pages/CarDetails";
+import Login from "../pages/Authentication/Login";
+import Register from "../pages/Authentication/Register";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "/carDetails",
         element: <CarDetails />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },

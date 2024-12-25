@@ -4,7 +4,7 @@ import { IoGridOutline } from "react-icons/io5";
 import { FaThList } from "react-icons/fa";
 import Pagination from "@mui/material/Pagination";
 import CarCardGrid from "../components/CarCardGrid";
-import CardCardTabular from "../components/CardCardTabular";
+import CarCardTabular from "../components/CarCardTabular";
 
 const AllCars = () => {
   const [view, setView] = useState("grid"); // Default to Grid View
@@ -82,7 +82,7 @@ const AllCars = () => {
         </div>
       </div>
       <div className="grid grid-cols-12 gap-5 my-12">
-        {view === "grid" ? <CarCardGrid /> : <CardCardTabular />}
+        {view === "grid" ? <CarCardGrid /> : <CarCardTabular />}
       </div>
 
       <div className="flex justify-center items-center">

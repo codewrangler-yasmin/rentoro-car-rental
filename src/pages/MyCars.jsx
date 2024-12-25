@@ -37,7 +37,12 @@ const MyCars = () => {
       {/* Sorting Options */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-xl font-bold text-gray-700">My Listed Cars</h2>
+          <h2 className="text-xl font-bold text-gray-700 flex gap-3">
+            <span>My Listed Cars</span>
+            <span className="bg-blue-200 text-blue-600 text-sm font-medium px-3 py-1 rounded-full">
+              0 Cars
+            </span>
+          </h2>
           <p className="text-gray-500 mb-6">
             Update and Manage All Your Listed Cars.
           </p>

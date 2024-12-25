@@ -12,7 +12,7 @@ import BookingForm from "../components/BookingForm";
 
 const CarDetails = () => {
   return (
-    <div className="container mx-auto bg-gray-100">
+    <div className="container mx-auto bg-gray-100 py-20">
       {/* Breadcrumb */}
       <div className="text-sm text-gray-500 mb-8">
         <Link href="#" className="text-blue-600">
@@ -26,7 +26,7 @@ const CarDetails = () => {
           {/* Left Section */}
           <div className="relative">
             <img
-              src="https://i.ibb.co.com/8mqd50K/1600.webp"
+              src="https://i.ibb.co.com/1rHYG1h/2024-Mercedes-Benz-E-Class.jpg"
               alt="Car"
               className="w-full object-cover h-96 lg:h-full"
             />

@@ -1,0 +1,33 @@
+.slider-two .swiper-pagination {
+  position: absolute;
+  bottom: 3%; /* Moves the pagination below the cards */
+  left: 6%; /* Aligns to the bottom-left corner */
+  z-index: 10; /* Ensures it's on top of other elements */
+  width: 100%; /* Takes up the full width */
+  text-align: left; /* Aligns the fraction to the left */
+  padding-left: 10px; /* Adds some padding for better spacing */
+  color: #050b21 !important; /* Ensures readability */
+}
+
+.slider-two .swiper-wrapper {
+  height: 400px !important;
+}
+.slider-two .swiper-button-prev,
+.slider-two .swiper-button-next {
+  color: #050b21 !important;
+  top: var(--swiper-navigation-top-offset, 95%);
+  z-index: 99;
+  border: 1px solid #050b21 !important;
+  padding: 15px 25px;
+  border-radius: 30px;
+  height: 0;
+}
+
+.slider-two .swiper-button-prev:after,
+.slider-two .swiper-button-next:after {
+  font-size: 16px;
+}
+
+.slider-two .swiper-button-next {
+  left: 11%;
+}

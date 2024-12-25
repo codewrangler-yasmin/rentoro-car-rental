@@ -1,0 +1,49 @@
+.slider-one .swiper {
+  width: 100%;
+  height: 100%;
+}
+.slider-one .swiper-pagination {
+  position: absolute;
+  bottom: 30px; /* Moves the pagination below the cards */
+  left: 100px; /* Aligns to the bottom-left corner */
+  z-index: 10; /* Ensures it's on top of other elements */
+  width: 100%; /* Takes up the full width */
+  text-align: left; /* Aligns the fraction to the left */
+  padding-left: 10px; /* Adds some padding for better spacing */
+  color: white; /* Ensures readability */
+}
+/* Force stacking context */
+.slider-one .mySwiper {
+  position: relative;
+  z-index: 1;
+}
+
+.slider-one .swiper-slide {
+  position: relative;
+  font-size: 18px;
+  width: 720px !important;
+}
+
+.slider-one .swiper-wrapper {
+  position: relative;
+  height: 400px !important;
+}
+.slider-one .swiper-button-prev,
+.slider-one .swiper-button-next {
+  color: #fff;
+  top: var(--swiper-navigation-top-offset, 91%);
+  z-index: 99;
+  border: 1px solid #fff;
+  padding: 15px 25px;
+  border-radius: 30px;
+  height: 0;
+}
+
+.slider-one .swiper-button-prev:after,
+.slider-one .swiper-button-next:after {
+  font-size: 16px;
+}
+
+.slider-one .swiper-button-next {
+  left: 11%;
+}

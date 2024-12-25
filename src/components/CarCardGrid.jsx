@@ -11,13 +11,18 @@ const CarCardGrid = () => {
       <div className="col-span-3 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-200 overflow-hidden border">
         <div className="relative">
           <img
-            src="https://i.ibb.co.com/8mqd50K/1600.webp" // Replace with the car image URL
+            src="https://i.ibb.co.com/1rHYG1h/2024-Mercedes-Benz-E-Class.jpg" // Replace with the car image URL
             alt="Car"
             className="w-full h-72 object-cover"
           />
-          <span className="absolute top-2 left-2 bg-green-600 text-white text-sm font-medium px-3 py-1 rounded-full">
-            Available
-          </span>
+          <div className="absolute top-2 left-2 flex gap-3">
+            <span className=" bg-green-500 text-white text-sm font-medium px-3 py-1 rounded-full">
+              Available
+            </span>
+            <span className=" bg-blue-500 text-white text-sm font-medium px-3 py-1 rounded-full">
+              0 Booked
+            </span>
+          </div>
           <button
             className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md text-gray-600 hover:text-black"
             aria-label="Save"
