@@ -13,7 +13,7 @@ const AllCars = () => {
     setView(newView); // Set view to "grid" or "list"
   };
   return (
-    <div className="container mx-auto font-accent">
+    <div className="container mx-auto font-accent py-20">
       <div className="bg-gray-100 flex justify-between">
         <div>
           {/* Breadcrumb */}

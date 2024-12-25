@@ -4,7 +4,7 @@ import LottieVacation from "../assets/images/vacation.json";
 
 const Promotions = () => {
   return (
-    <section className="py-16">
+    <section className="py-16 pt-24">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Card 1 */}
 

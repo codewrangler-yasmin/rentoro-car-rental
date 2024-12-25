@@ -5,13 +5,15 @@ import { FaCar } from "react-icons/fa";
 
 const Features = () => {
   return (
-    <section className="py-16 text-primary absolute">
+    <section className="pt-24 text-primary absolute pb-12 border-b border-gray-300">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-10">Why Choose Us?</h2>
+        <h2 className="text-3xl font-bold mb-10 border-b border-gray-300 pb-6">
+          Why Choose Us?
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Feature 1 */}
-          <div className="flex flex-col">
-            <div className="text-6xl text-blue-500 mb-4">
+          <div className="flex flex-col border-r border-dotted border-gray-400">
+            <div className="text-6xl text-blue-400 mb-4">
               <FaCar />
             </div>
             <h3 className="text-xl font-semibold mb-2">
@@ -23,8 +25,8 @@ const Features = () => {
           </div>
 
           {/* Feature 2 */}
-          <div className="flex flex-col">
-            <div className="text-6xl text-blue-500 mb-4">
+          <div className="flex flex-col border-r border-dotted border-gray-400">
+            <div className="text-6xl text-pink-400 mb-4">
               <GiReceiveMoney />
             </div>
             <h3 className="text-xl font-semibold mb-2">Value for Money: </h3>
@@ -35,8 +37,8 @@ const Features = () => {
           </div>
 
           {/* Feature 3 */}
-          <div className="flex flex-col">
-            <div className="text-6xl text-blue-500 mb-4">
+          <div className="flex flex-col border-r border-dotted border-gray-400">
+            <div className="text-6xl text-purple-400 mb-4">
               <HiOutlineClipboardDocumentList />
             </div>
             <h3 className="text-xl font-semibold mb-2">
@@ -49,7 +51,7 @@ const Features = () => {
 
           {/* Feature 4 */}
           <div className="flex flex-col">
-            <div className="text-6xl text-blue-500 mb-4">
+            <div className="text-6xl text-green-400 mb-4">
               <MdOutlineSupportAgent />
             </div>
             <h3 className="text-xl font-semibold mb-2">

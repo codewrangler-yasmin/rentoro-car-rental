@@ -3,6 +3,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { PiQuotesDuotone } from "react-icons/pi";
 
 const Reviews = () => {
   const reviews = [
@@ -48,10 +49,13 @@ const Reviews = () => {
     },
   ];
 
+  // Define different colors for each review
+  const quoteColors = ["text-blue-400", "text-pink-400", "text-purple-400"];
+
   return (
-    <div className="container mx-auto py-12 px-6">
+    <div className="container mx-auto py-24 px-6">
       {/* Section Title */}
-      <h2 className="text-3xl text-primary font-bold mb-10">
+      <h2 className="text-3xl text-primary font-bold mb-10 border-b pb-6">
         What our customers say
       </h2>
 
@@ -73,8 +77,14 @@ const Reviews = () => {
       >
         {reviews.map((review, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-white shadow-lg rounded-lg p-6 mb-10">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+            <div className="bg-white shadow-lg rounded-lg p-12 mb-10">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 relative">
+                {/* Assign a different color for each quote icon */}
+                <PiQuotesDuotone
+                  className={`absolute -right-4 -top-4 text-5xl ${
+                    quoteColors[index % quoteColors.length]
+                  }`}
+                />
                 {review.title}
               </h3>
               <p className="text-gray-600 italic mb-4">“{review.content}”</p>

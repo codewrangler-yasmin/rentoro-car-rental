@@ -18,10 +18,12 @@ const Home = () => {
           <Features />
         </div>
       </section>
-      <section className="py-12"></section>
+      <section className="container mx-auto mt-20">
+        <Promotions />
+      </section>
+      <section className="py-12 h-[675px] bg-primary mt-8"></section>
       <section className="container mx-auto">
         <Reviews />
-        <Promotions />
       </section>
     </div>
   );
