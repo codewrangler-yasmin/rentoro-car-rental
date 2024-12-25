@@ -13,7 +13,6 @@ import UpdateCar from "../pages/UpdateCar";
 import BookingRequests from "../pages/BookingRequests";
 import MyProfile from "../pages/MyProfile";
 import CarDetails from "../pages/CarDetails";
-import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import TabAuthentication from "../pages/Authentication/TabAuthentication";
 

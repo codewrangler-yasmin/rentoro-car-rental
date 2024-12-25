@@ -1,6 +1,12 @@
+import { Helmet } from "react-helmet-async";
+
 const UpdateCar = () => {
   return (
-    <div>
+    <>
+      {/* Helmet used for head management */}
+      <Helmet>
+        <title>Update Car | Rentoro Car Rental Services</title>
+      </Helmet>
       <div className="mx-auto p-10 rounded-2xl border border-gray-200 bg-gray-50 font-accent">
         <h2 className="text-xl font-bold">Update Car Details</h2>
         <p className="text-gray-500 mb-6">
@@ -144,7 +150,7 @@ const UpdateCar = () => {
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
