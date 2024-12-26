@@ -5,7 +5,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
 const BookingForm = () => {
-  const [value, setValue] = useState(null);
+  const [bookingDate, setBookingDate] = useState(null);
   const [pickupTime, setPickupTime] = useState(null);
 
   return (
@@ -49,8 +49,10 @@ const BookingForm = () => {
                 >
                   <DatePicker
                     label="Select Date"
-                    value={value}
-                    onChange={(newValue) => setValue(newValue)}
+                    value={bookingDate}
+                    onChange={(newBookingDate) =>
+                      setBookingDate(newBookingDate)
+                    }
                     slotProps={{
                       popper: {
                         modifiers: [

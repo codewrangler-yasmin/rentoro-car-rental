@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { AiOutlineMail } from "react-icons/ai";
-import { IoIosWarning } from "react-icons/io";
 import { PiEye, PiEyeClosed } from "react-icons/pi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
@@ -147,12 +146,6 @@ const Login = () => {
                 Register here
               </Link>
             </p>
-            {error && (
-              <p className="text-lg text-red-600 flex items-center gap-2">
-                <IoIosWarning />
-                {error}
-              </p>
-            )}
           </form>
         </div>
       </div>

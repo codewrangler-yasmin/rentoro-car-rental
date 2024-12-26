@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoGridOutline } from "react-icons/io5";
 import { FaThList } from "react-icons/fa";
 import Pagination from "@mui/material/Pagination";
 import CarCardGrid from "../components/CarCardGrid";
 import CarCardTabular from "../components/CarCardTabular";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const AllCars = () => {
   const [view, setView] = useState("grid"); // Default to Grid View
+
+  const [cars, setCars] = useState([]);
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("");
+
+  useEffect(() => {
+    const fetchAllCarsData = async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/all-cars?search=${search}&sort=${sort}`
+      );
+      setCars(data);
+      console.log(data);
+    };
+    fetchAllCarsData();
+  }, [search, sort]);
 
   const toggleView = (newView) => {
     setView(newView); // Set view to "grid" or "list"
@@ -43,6 +59,8 @@ const AllCars = () => {
               <input
                 type="text"
                 placeholder="Search Cars e.g. Audi Q7"
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
                 className="text-gray-400 flex-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-600 focus:outline-none"
               />
             </div>
@@ -50,8 +68,11 @@ const AllCars = () => {
             {/* Sort Options */}
 
             <select
+              name="sortByPriceDate"
               className="px-4 py-2 text-gray-400 bg-white border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               defaultValue="newest"
+              onChange={(e) => setSort(e.target.value)}
+              value={sort}
             >
               <option value="">Sort By Price/Date</option>
               <option value="newest">Newest By Date</option>
@@ -88,7 +109,9 @@ const AllCars = () => {
           </div>
         </div>
         <div className="grid grid-cols-12 gap-5 my-12">
-          {view === "grid" ? <CarCardGrid /> : <CarCardTabular />}
+          {view === "grid"
+            ? cars.map((car) => <CarCardGrid key={car._id} car={car} />)
+            : cars.map((car) => <CarCardTabular key={car._id} car={car} />)}
         </div>
 
         <div className="flex justify-center items-center">

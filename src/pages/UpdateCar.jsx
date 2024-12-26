@@ -1,6 +1,71 @@
 import { Helmet } from "react-helmet-async";
+import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import { IoCloudUploadOutline } from "react-icons/io5";
+import { BsTrash3 } from "react-icons/bs";
+import { useContext, useState } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
 
 const UpdateCar = () => {
+  const { user } = useContext(AuthContext);
+  const [file, setFile] = useState();
+  function handleChange(e) {
+    console.log(e.target.files);
+    setFile(URL.createObjectURL(e.target.files[0]));
+  }
+
+  const handleRemoveImage = () => {
+    setFile(null); // Reset the file state to null
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const carModel = form.carModel.value;
+    const rentalPrice = form.rentalPrice.value;
+    const availability = form.availability.value;
+    const regNumber = form.regNumber.value;
+    const features = form.features.value;
+    const location = form.location.value;
+    const mileage = form.mileage.value;
+    const fuelType = form.fuelType.value;
+    const transmission = form.transmission.value;
+    const color = form.color.value;
+    const image = form.image.files[0];
+    const formData = {
+      carModel,
+      rentalPrice,
+      availability,
+      regNumber,
+      features,
+      image,
+      location,
+      mileage,
+      fuelType,
+      transmission,
+      color,
+      renter: {
+        email: user?.email,
+        name: user?.displayName,
+        photo: user?.photoURL,
+      },
+      bookingCount: 0,
+    };
+    console.table(formData);
+  };
+
   return (
     <>
       {/* Helmet used for head management */}
@@ -12,7 +77,32 @@ const UpdateCar = () => {
         <p className="text-gray-500 mb-6">
           Update Car Information to Keep Your Listings Accurate
         </p>
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              defaultValue={user?.displayName}
+              disabled={true}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Email</label>
+            <input
+              type="text"
+              name="email"
+              defaultValue={user?.email}
+              disabled={true}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
           {/* Car Model */}
           <div>
             <label className="block text-sm font-medium mb-1">Car Model</label>
@@ -116,6 +206,46 @@ const UpdateCar = () => {
               placeholder="Enter Color"
             />
           </div>
+          {/* Upload Image */}
+          <div className="col-span-1 md:col-span-2">
+            <Button
+              component="label"
+              role={undefined}
+              variant="contained"
+              tabIndex={-1}
+              startIcon={<IoCloudUploadOutline />}
+            >
+              Upload Image
+              <VisuallyHiddenInput
+                type="file"
+                name="image"
+                onChange={handleChange}
+                multiple
+              />
+            </Button>
+            {file && (
+              <div className="relative group w-64 mt-5">
+                {/* Dark overlay */}
+                <div
+                  onClick={handleRemoveImage}
+                  className="cursor-pointer absolute inset-0 bg-black opacity-50 group-hover:block hidden rounded-md"
+                ></div>
+                <img
+                  className="w-full h-auto rounded-md"
+                  src={file}
+                  alt="Uploaded preview"
+                />
+                {/* Delete button */}
+                <button
+                  type="button"
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  onClick={handleRemoveImage}
+                >
+                  <BsTrash3 />
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* Description */}
           <div className="col-span-1 md:col-span-2">
@@ -129,23 +259,12 @@ const UpdateCar = () => {
             ></textarea>
           </div>
 
-          {/* Image URL */}
-          <div className="col-span-1 md:col-span-2">
-            <label className="block text-sm font-medium mb-1">Image URL</label>
-            <input
-              type="url"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter image URL"
-            />
-          </div>
-
-          {/* Submit Button */}
           <div className="col-span-1 md:col-span-2">
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="btn px-5 text-lg bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              Submit
+              Update
             </button>
           </div>
         </form>

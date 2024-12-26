@@ -95,9 +95,14 @@ const Register = () => {
         "auth/email-already-in-use":
           "This email is already in use. Try logging in.",
       };
-      setErrorMessage(
-        firebaseErrorMessages[errorCode] || "An unexpected error occurred."
-      );
+      const errorMessage =
+        firebaseErrorMessages[errorCode] || "An unexpected error occurred.";
+
+      // Set error message to state
+      setErrorMessage(errorMessage);
+
+      // Show error in toast
+      toast.error(errorMessage);
     }
   };
 
