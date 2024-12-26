@@ -2,8 +2,13 @@ import { FiUser } from "react-icons/fi";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
 import { IoCarSport } from "react-icons/io5";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+import LoadingSpinner from "./LoadingSpinner";
+import PuffLoader from "react-spinners/PuffLoader";
 
 const Navbar = () => {
+  const { user, loading } = useContext(AuthContext);
   const { pathname } = useLocation();
   const isHomePage = pathname === "/";
 
@@ -79,14 +84,50 @@ const Navbar = () => {
             <ul className="flex gap-4 justify-center items-center px-1 text-sm">
               {navLinks}
             </ul>
-            <NavLink to="/login">
-              <button className="hover:bg-white hover:text-primary transition-all duration-200 flex items-center gap-2 border rounded-full px-5 py-2">
-                <Tooltip title="Login" className="flex items-center gap-2">
-                  <FiUser />
-                  <span>Login</span>
-                </Tooltip>
-              </button>
-            </NavLink>
+            {user && (
+              <Tooltip
+                title={user?.displayName}
+                className="flex items-center gap-2"
+                sx={{
+                  backgroundColor: "#4ADE80", // Custom color here
+                }}
+              >
+                <NavLink
+                  to="/dashboard"
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      referrerPolicy="no-referrer"
+                      alt="User Profile Photo"
+                      src={user?.photoURL}
+                    />
+                  </div>
+                </NavLink>
+              </Tooltip>
+            )}
+            {loading ? (
+              <PuffLoader
+                color="#405FF2"
+                cssOverride={null}
+                loading
+                size={30}
+                speedMultiplier={2}
+              />
+            ) : (
+              !user && (
+                <NavLink to="/login">
+                  <button className="hover:bg-white hover:text-primary transition-all duration-200 flex items-center gap-2 border rounded-full px-5 py-2">
+                    {/* <Tooltip title="Login" className="flex items-center gap-2"></Tooltip> */}
+
+                    <FiUser />
+                    <span>Login</span>
+                  </button>
+                </NavLink>
+              )
+            )}
           </div>
         </div>
       </div>

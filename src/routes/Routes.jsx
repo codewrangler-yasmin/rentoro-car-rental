@@ -15,6 +15,7 @@ import MyProfile from "../pages/MyProfile";
 import CarDetails from "../pages/CarDetails";
 import Register from "../pages/Authentication/Register";
 import TabAuthentication from "../pages/Authentication/TabAuthentication";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard",

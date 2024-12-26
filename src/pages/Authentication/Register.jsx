@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaImage } from "react-icons/fa";
@@ -6,13 +6,101 @@ import { IoIosWarning } from "react-icons/io";
 import { LuUser } from "react-icons/lu";
 import { PiEye, PiEyeClosed } from "react-icons/pi";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const { createUser, updateUserProfile, setUser } = useContext(AuthContext);
+
   const [showPassword, setShowPassword] = useState(null);
   const [showConfirmPassword, setShowConfirmPassword] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+    const agreed = form.agree.checked;
+    console.log({ email, password, name, photoURL });
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match. Please try again.");
+      return;
+    }
+
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    // Check for detailed password validation errors
+    if (!passwordRegex.test(password)) {
+      const errors = [];
+      if (!/[a-z]/.test(password)) {
+        errors.push(
+          "Password must contain at least one lowercase letter (a-z)."
+        );
+      }
+      if (!/[A-Z]/.test(password)) {
+        errors.push(
+          "Password must contain at least one uppercase letter (A-Z)."
+        );
+      }
+      if (!/\d/.test(password)) {
+        errors.push("Password must contain at least one number (0-9).");
+      }
+      if (!/[@$!%*?&]/.test(password)) {
+        errors.push(
+          "Password must contain at least one special character (e.g., @, $, !, %, *, ?, &)."
+        );
+      }
+      if (password.length < 8) {
+        errors.push("Password must be at least 8 characters long.");
+      }
+
+      setValidationErrors(errors);
+      return;
+    }
+    setErrorMessage("");
+    setValidationErrors([]);
+
+    if (!agreed) {
+      setErrorMessage("You must agree with the privacy policy to proceed!");
+      return;
+    }
+
+    try {
+      //2. User Registration
+      const result = await createUser(email, password);
+      console.log(result);
+      await updateUserProfile(name, photoURL);
+      setUser({ ...result.user, photoURL: photoURL, displayName: name });
+      toast.success("Your account has been successfully created.");
+      navigate("/dashboard");
+      form.reset();
+    } catch (error) {
+      console.log("Error", error.message);
+      const errorCode = error.code;
+      const firebaseErrorMessages = {
+        "auth/user-not-found":
+          "No account found with this email. Please sign up.",
+        "auth/wrong-password": "Incorrect password. Please try again.",
+        "auth/invalid-email": "The email address is badly formatted.",
+        "auth/email-already-in-use":
+          "This email is already in use. Try logging in.",
+      };
+      setErrorMessage(
+        firebaseErrorMessages[errorCode] || "An unexpected error occurred."
+      );
+    }
+  };
+
   return (
     <>
       {/* Helmet used for head management */}
@@ -21,7 +109,7 @@ const Register = () => {
       </Helmet>
       <div className="flex justify-center items-center px-5">
         <div className="w-full max-w-md p-8">
-          <form className="space-y-5">
+          <form onSubmit={handleRegister} className="space-y-5">
             {/* User Name */}
             <div className="relative">
               <LuUser className="absolute top-1/2 left-3 transform -translate-y-1/2 text-blue-400" />

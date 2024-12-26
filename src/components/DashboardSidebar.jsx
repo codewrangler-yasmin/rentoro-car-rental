@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import { AiOutlineProfile } from "react-icons/ai";
 import { GoBookmark } from "react-icons/go";
 import { IoCarSportOutline } from "react-icons/io5";
 import { RiFileUserLine, RiHome3Line, RiPlayListAddFill } from "react-icons/ri";
 import { SlCalender, SlLogout } from "react-icons/sl";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const DashboardSidebar = () => {
+  const { logOut } = useContext(AuthContext);
   const sidebarLinks = (
     <>
       <li>
@@ -98,17 +101,13 @@ const DashboardSidebar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `flex items-center gap-3 px-5 py-3 text-lg rounded-2xl mr-12 ${
-              isActive ? "bg-gray-800" : "bg-transparent"
-            }`
-          }
+        <button
+          onClick={logOut}
+          className="w-full flex items-center gap-3 px-5 py-3 text-lg rounded-2xl mr-12"
         >
           <SlLogout />
           Logout
-        </NavLink>
+        </button>
       </li>
     </>
   );
