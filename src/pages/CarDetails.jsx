@@ -199,7 +199,7 @@ const CarDetails = () => {
                     <>
                       <button
                         onClick={() =>
-                          document.getElementById("book_now").showModal()
+                          document.getElementById("bookNow").showModal()
                         }
                         className="bg-blue-600 text-white px-6 py-2 rounded-md flex items-center gap-2 disabled:bg-gray-200 disabled:text-primary disabled:text-opacity-40 disabled:cursor-not-allowed"
                         disabled={availability === "notAvailable"}
@@ -309,14 +309,14 @@ const CarDetails = () => {
         </div>
 
         {/* Book Now Modal */}
-        <dialog id="book_now" className="modal modal-bottom sm:modal-middle">
+        <dialog id="bookNow" className="modal modal-bottom sm:modal-middle">
           <div className="modal-box relative pt-16">
             <form onSubmit={handleBookingSubmit} method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button
                 type="button"
                 className="z-50 right-6 top-2 absolute text-primary h-12 w-12 bg-gray-100 flex justify-center items-center rounded-full text-xl hover:bg-gray-200"
-                onClick={() => document.getElementById("book_now")?.close()}
+                onClick={() => document.getElementById("bookNow")?.close()}
               >
                 <IoClose />
               </button>
@@ -377,7 +377,7 @@ const CarDetails = () => {
                                     },
                                   },
                                 ],
-                                container: document.getElementById("book_now"), // Attach to modal
+                                container: document.getElementById("bookNow"), // Attach to modal
                                 sx: { zIndex: 9999 },
                               },
                             }}
@@ -406,7 +406,7 @@ const CarDetails = () => {
                                     },
                                   },
                                 ],
-                                container: document.getElementById("book_now"), // Attach to modal
+                                container: document.getElementById("bookNow"), // Attach to modal
                                 sx: { zIndex: 9999 },
                               },
                             }}

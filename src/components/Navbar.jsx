@@ -88,8 +88,7 @@ const Navbar = () => {
                 title={user?.displayName}
                 className="flex items-center gap-2"
                 sx={{
-                  backgroundColor: "#4ADE80", // Custom color here
-                  color: "#ffffff",
+                  backgroundColor: "#4ADE80",
                 }}
               >
                 <NavLink

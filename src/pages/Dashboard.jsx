@@ -76,7 +76,7 @@ const Dashboard = () => {
           >
             <div>
               <p className="text-gray-500">My Bookings</p>
-              <p className="text-3xl font-semibold">{totalBookings}</p>
+              <p className="text-3xl font-semibold">0</p>
             </div>
             <div className="bg-pink-100 text-pink-500 rounded-full p-3">
               <IoCalendarOutline />
@@ -90,7 +90,7 @@ const Dashboard = () => {
           >
             <div>
               <p className="text-gray-500">Booking Requests</p>
-              <p className="text-3xl font-semibold">15</p>
+              <p className="text-3xl font-semibold">0</p>
             </div>
             <div className="bg-purple-100 text-purple-500 rounded-full p-3">
               <CiInboxIn />
@@ -104,7 +104,7 @@ const Dashboard = () => {
           >
             <div>
               <p className="text-gray-500">My Favorites</p>
-              <p className="text-3xl font-semibold">22</p>
+              <p className="text-3xl font-semibold">0</p>
             </div>{" "}
             <div className="bg-green-100 text-green-500 rounded-full p-3">
               <GoBookmark />
