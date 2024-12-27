@@ -32,6 +32,7 @@
     "react-router-dom": "^7.1.0",
     "react-spinners": "^0.15.0",
     "react-swiper": "^0.1.5",
+    "recharts": "^2.15.0",
     "sort-by": "^0.0.2",
     "styled-components": "^6.1.13",
     "swiper": "^11.1.15"

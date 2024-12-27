@@ -13,6 +13,16 @@ import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import dayjs from "dayjs";
 import { IoClose } from "react-icons/io5";
 import toast from "react-hot-toast";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const MyBookings = () => {
   const { user, loading } = useContext(AuthContext);
@@ -20,10 +30,6 @@ const MyBookings = () => {
   const [modifiedBookingDate, setModifiedBookingDate] = useState(null);
   const [modifiedPickupTime, setModifiedPickupTime] = useState(null);
   const [selectedBookingId, setSelectedBookingId] = useState(null);
-
-  if (!dayjs.isDayjs(modifiedBookingDate)) {
-    console.error("Invalid date value:", modifiedBookingDate);
-  }
 
   useEffect(() => {
     if (!user?.email || loading) return;
@@ -64,9 +70,6 @@ const MyBookings = () => {
       console.error("Error updating booking:", error.message);
     }
   };
-
-  console.log("Date value:", modifiedBookingDate);
-  console.log("Time value:", modifiedPickupTime);
 
   const handleStatusChange = async (id, prevStatus, status) => {
     console.log({ id, prevStatus, status });
@@ -115,6 +118,12 @@ const MyBookings = () => {
       </div>
     ));
   };
+
+  // Prepare data for the chart
+  const rentalData = bookings.map((booking) => ({
+    date: format(new Date(booking.date), "PP"),
+    price: booking.rentalPrice,
+  }));
 
   return (
     <>
@@ -274,6 +283,28 @@ const MyBookings = () => {
             </table>
           </div>
         )}
+
+        {/* Daily Rental Price Chart */}
+        <div className="mt-10">
+          <h3 className="text-xl font-bold text-gray-700 mb-4">
+            Daily Rental Price
+          </h3>
+          <ResponsiveContainer width="100%" height={400}>
+            <LineChart data={rentalData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="price"
+                stroke="#405FF2"
+                activeDot={{ r: 8 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
 
         <dialog id="dateModify" className="modal modal-bottom sm:modal-middle">
           <div className="modal-box relative pt-16">
