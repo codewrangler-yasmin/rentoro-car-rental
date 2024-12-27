@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../providers/AuthProvider";
 
 const MyProfile = () => {
+  const { user } = useContext(AuthContext);
   return (
     <>
       {/* Helmet used for head management */}
@@ -15,16 +18,18 @@ const MyProfile = () => {
             {/* Profile Image */}
             <div className="w-16 h-16">
               <img
-                src="https://via.placeholder.com/150" // Replace with actual profile image URL
+                src={user ? user?.photoURL : `https://via.placeholder.com/150`} // Replace with actual profile image URL
                 alt="Profile"
                 className="w-full h-full rounded-full object-cover"
               />
             </div>
             {/* Profile Details */}
             <div>
-              <h2 className="text-xl font-semibold">John Doe</h2>{" "}
+              <h2 className="text-xl font-semibold">
+                {user ? user?.displayName : "N/A"}
+              </h2>{" "}
               {/* Replace with actual display name */}
-              <p className="text-gray-500">johndoe@example.com</p>{" "}
+              <p className="text-gray-500">{user ? user?.email : "N/A"}</p>{" "}
               {/* Replace with actual email */}
             </div>
           </div>

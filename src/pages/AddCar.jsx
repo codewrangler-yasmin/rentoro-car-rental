@@ -25,6 +25,7 @@ const AddCar = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [file, setFile] = useState();
+
   function handleChange(e) {
     console.log(e.target.files);
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -49,6 +50,25 @@ const AddCar = () => {
     const color = form.color.value;
     const image = form.image.files[0]; // Get the uploaded image file
     const description = form.description.value;
+
+    // Check for any empty required fields
+    if (
+      !carModel ||
+      !rentalPrice ||
+      !availability ||
+      !regNumber ||
+      !features ||
+      !location ||
+      !mileage ||
+      !fuelType ||
+      !transmission ||
+      !color ||
+      !image ||
+      !description
+    ) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
 
     const formData = {
       carModel,
@@ -78,11 +98,11 @@ const AddCar = () => {
         },
       });
       form.reset();
-      toast.success("Car Added Successfully!!!");
+      toast.success(`${carModel} Added Successfully!!!`);
       navigate("/myCars");
     } catch (error) {
       console.log(error);
-      toast.error("Failed to add car");
+      toast.error(`Failed to add ${carModel}`);
     }
   };
 
@@ -131,6 +151,7 @@ const AddCar = () => {
               name="carModel"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter car model"
+              required
             />
           </div>
 
@@ -144,6 +165,7 @@ const AddCar = () => {
               name="rentalPrice"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter price"
+              required
             />
           </div>
 
@@ -154,6 +176,7 @@ const AddCar = () => {
             </label>
             <select
               name="availability"
+              required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select availability</option>
@@ -168,8 +191,9 @@ const AddCar = () => {
               Vehicle Registration Number
             </label>
             <input
-              name="regNumber"
               type="text"
+              name="regNumber"
+              required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter registration number"
             />
@@ -181,6 +205,7 @@ const AddCar = () => {
             <input
               type="text"
               name="features"
+              required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter features (e.g., GPS, AC)"
             />
@@ -192,6 +217,7 @@ const AddCar = () => {
             <input
               type="text"
               name="location"
+              required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter location"
             />
@@ -202,6 +228,7 @@ const AddCar = () => {
             <input
               type="text"
               name="mileage"
+              required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Mileage"
             />
@@ -212,6 +239,7 @@ const AddCar = () => {
             <input
               type="text"
               name="fuelType"
+              required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Fuel Type"
             />
@@ -224,6 +252,7 @@ const AddCar = () => {
             <input
               type="text"
               name="transmission"
+              required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Transmission"
             />
@@ -234,6 +263,7 @@ const AddCar = () => {
             <input
               type="text"
               name="color"
+              required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Color"
             />
@@ -252,7 +282,7 @@ const AddCar = () => {
                 type="file"
                 name="image"
                 onChange={handleChange}
-                multiple
+                required
               />
             </Button>
             {file && (
@@ -287,6 +317,7 @@ const AddCar = () => {
             <textarea
               rows="4"
               name="description"
+              required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter description"
             ></textarea>

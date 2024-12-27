@@ -4,7 +4,6 @@ import Tooltip from "@mui/material/Tooltip";
 import { IoCarSport } from "react-icons/io5";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import LoadingSpinner from "./LoadingSpinner";
 import PuffLoader from "react-spinners/PuffLoader";
 
 const Navbar = () => {
@@ -90,6 +89,7 @@ const Navbar = () => {
                 className="flex items-center gap-2"
                 sx={{
                   backgroundColor: "#4ADE80", // Custom color here
+                  color: "#ffffff",
                 }}
               >
                 <NavLink

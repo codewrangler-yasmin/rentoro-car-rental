@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         element: <AllCars />,
       },
       {
-        path: "/carDetails",
+        path: "/carDetails/:id",
         element: <CarDetails />,
       },
       {
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         element: <MyCars />,
       },
       {
-        path: "/updateCar",
+        path: "/updateCar/:id",
         element: <UpdateCar />,
       },
       {

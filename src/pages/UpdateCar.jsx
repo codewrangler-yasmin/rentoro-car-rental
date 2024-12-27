@@ -3,8 +3,11 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { BsTrash3 } from "react-icons/bs";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -19,18 +22,35 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const UpdateCar = () => {
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [file, setFile] = useState();
+  const { id } = useParams();
+  const [car, setCar] = useState({});
+
+  useEffect(() => {
+    const fetchCarData = async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/car/${id}`
+      );
+      setCar(data);
+    };
+    fetchCarData();
+  }, [id]);
+
   function handleChange(e) {
-    console.log(e.target.files);
-    setFile(URL.createObjectURL(e.target.files[0]));
+    const uploadedFile = e.target.files[0];
+    setFile(URL.createObjectURL(uploadedFile)); // Set preview
   }
 
   const handleRemoveImage = () => {
-    setFile(null); // Reset the file state to null
+    setCar((prevCar) => ({
+      ...prevCar,
+      image: null,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const carModel = form.carModel.value;
@@ -43,27 +63,47 @@ const UpdateCar = () => {
     const fuelType = form.fuelType.value;
     const transmission = form.transmission.value;
     const color = form.color.value;
-    const image = form.image.files[0];
+    const description = form.description.value;
+
     const formData = {
       carModel,
       rentalPrice,
       availability,
       regNumber,
       features,
-      image,
       location,
       mileage,
       fuelType,
       transmission,
       color,
+      image: form.image.files[0],
+      description,
       renter: {
         email: user?.email,
         name: user?.displayName,
         photo: user?.photoURL,
       },
-      bookingCount: 0,
+      bookingCount: car.bookingCount,
     };
-    console.table(formData);
+
+    // make a post request for sending jobData
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/update-car/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Set the content type for FormData
+          },
+        }
+      );
+      form.reset();
+      toast.success(`${carModel} Updated Successfully!!!`);
+      navigate("/myCars");
+    } catch (error) {
+      console.log(error);
+      toast.error(`Failed to update ${carModel}`);
+    }
   };
 
   return (
@@ -108,6 +148,8 @@ const UpdateCar = () => {
             <label className="block text-sm font-medium mb-1">Car Model</label>
             <input
               type="text"
+              name="carModel"
+              defaultValue={car.carModel}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter car model"
             />
@@ -120,22 +162,30 @@ const UpdateCar = () => {
             </label>
             <input
               type="number"
+              name="rentalPrice"
+              defaultValue={car.rentalPrice}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter price"
             />
           </div>
 
           {/* Availability */}
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Availability
-            </label>
-            <select className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <option value="">Select availability</option>
-              <option value="available">Available</option>
-              <option value="notAvailable">Not Available</option>
-            </select>
-          </div>
+          {car.availability && (
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Availability
+              </label>
+              <select
+                name="availability"
+                defaultValue={car.availability}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">Select availability</option>
+                <option value="available">Available</option>
+                <option value="notAvailable">Not Available</option>
+              </select>
+            </div>
+          )}
 
           {/* Vehicle Registration Number */}
           <div>
@@ -144,6 +194,8 @@ const UpdateCar = () => {
             </label>
             <input
               type="text"
+              name="regNumber"
+              defaultValue={car.regNumber}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter registration number"
             />
@@ -154,6 +206,8 @@ const UpdateCar = () => {
             <label className="block text-sm font-medium mb-1">Features</label>
             <input
               type="text"
+              name="features"
+              defaultValue={car.features}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter features (e.g., GPS, AC)"
             />
@@ -164,6 +218,8 @@ const UpdateCar = () => {
             <label className="block text-sm font-medium mb-1">Location</label>
             <input
               type="text"
+              name="location"
+              defaultValue={car.location}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter location"
             />
@@ -173,6 +229,8 @@ const UpdateCar = () => {
             <label className="block text-sm font-medium mb-1">Mileage</label>
             <input
               type="text"
+              name="mileage"
+              defaultValue={car.mileage}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Mileage"
             />
@@ -182,6 +240,8 @@ const UpdateCar = () => {
             <label className="block text-sm font-medium mb-1">Fuel Type</label>
             <input
               type="text"
+              name="fuelType"
+              defaultValue={car.fuelType}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Fuel Type"
             />
@@ -193,6 +253,8 @@ const UpdateCar = () => {
             </label>
             <input
               type="text"
+              name="transmission"
+              defaultValue={car.transmission}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Transmission"
             />
@@ -202,6 +264,8 @@ const UpdateCar = () => {
             <label className="block text-sm font-medium mb-1">Color</label>
             <input
               type="text"
+              name="color"
+              defaultValue={car.color}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Color"
             />
@@ -210,9 +274,7 @@ const UpdateCar = () => {
           <div className="col-span-1 md:col-span-2">
             <Button
               component="label"
-              role={undefined}
               variant="contained"
-              tabIndex={-1}
               startIcon={<IoCloudUploadOutline />}
             >
               Upload Image
@@ -220,31 +282,30 @@ const UpdateCar = () => {
                 type="file"
                 name="image"
                 onChange={handleChange}
-                multiple
               />
             </Button>
-            {file && (
+            {file || car.image ? (
               <div className="relative group w-64 mt-5">
-                {/* Dark overlay */}
-                <div
-                  onClick={handleRemoveImage}
-                  className="cursor-pointer absolute inset-0 bg-black opacity-50 group-hover:block hidden rounded-md"
-                ></div>
                 <img
                   className="w-full h-auto rounded-md"
-                  src={file}
+                  src={
+                    file
+                      ? file.startsWith("blob:") // Check if it's a new uploaded image
+                        ? file
+                        : `${import.meta.env.VITE_API_URL}${file}` // Use new uploaded image path
+                      : `${import.meta.env.VITE_API_URL}${car.image}` // Existing backend image
+                  }
                   alt="Uploaded preview"
                 />
-                {/* Delete button */}
                 <button
                   type="button"
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl opacity-0 group-hover:opacity-100"
                   onClick={handleRemoveImage}
                 >
                   <BsTrash3 />
                 </button>
               </div>
-            )}
+            ) : null}
           </div>
 
           {/* Description */}
@@ -254,6 +315,8 @@ const UpdateCar = () => {
             </label>
             <textarea
               rows="4"
+              name="description"
+              defaultValue={car.description}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter description"
             ></textarea>

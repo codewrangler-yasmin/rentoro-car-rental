@@ -170,66 +170,42 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Vehicles Type</h4>
             <ul className="space-y-2">
               <li>
-                <Link
-                  to="/vehicles/pickup"
-                  className="text-gray-400 hover:text-white"
-                >
+                <Link to="/" className="text-gray-400 hover:text-white">
                   Pickup
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/vehicles/coup"
-                  className="text-gray-400 hover:text-white"
-                >
+                <Link to="/" className="text-gray-400 hover:text-white">
                   Coup
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/vehicles/family-mpv"
-                  className="text-gray-400 hover:text-white"
-                >
+                <Link to="/" className="text-gray-400 hover:text-white">
                   Family MPV
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/vehicles/sedan"
-                  className="text-gray-400 hover:text-white"
-                >
+                <Link to="/" className="text-gray-400 hover:text-white">
                   Sedan
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/vehicles/suvs"
-                  className="text-gray-400 hover:text-white"
-                >
+                <Link to="/" className="text-gray-400 hover:text-white">
                   SUVs
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/vehicles/sport-coupe"
-                  className="text-gray-400 hover:text-white"
-                >
+                <Link to="/" className="text-gray-400 hover:text-white">
                   Sport Coupe
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/vehicles/convertible"
-                  className="text-gray-400 hover:text-white"
-                >
+                <Link to="/" className="text-gray-400 hover:text-white">
                   Convertible
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/vehicles/wagon"
-                  className="text-gray-400 hover:text-white"
-                >
+                <Link to="/" className="text-gray-400 hover:text-white">
                   Wagon
                 </Link>
               </li>

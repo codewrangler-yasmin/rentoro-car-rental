@@ -1,30 +1,42 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoGridOutline } from "react-icons/io5";
 import { FaThList } from "react-icons/fa";
 import Pagination from "@mui/material/Pagination";
 import CarCardGrid from "../components/CarCardGrid";
-import CarCardTabular from "../components/CarCardTabular";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
+import CarCardList from "../components/CarCardList";
+import { AuthContext } from "../providers/AuthProvider";
 
 const AllCars = () => {
-  const [view, setView] = useState("grid"); // Default to Grid View
-
+  const { loading } = useContext(AuthContext);
+  const [view, setView] = useState("grid");
   const [cars, setCars] = useState([]);
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState("newest");
+  const [page, setPage] = useState(1); // Pagination page number
+  const [totalPages, setTotalPages] = useState(1); // Total pages from backend
 
   useEffect(() => {
     const fetchAllCarsData = async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/all-cars?search=${search}&sort=${sort}`
+        `${import.meta.env.VITE_API_URL}/all-cars`,
+        {
+          params: {
+            search,
+            sort,
+            page,
+            limit: 12, // Fetch 8 cars per page
+          },
+        }
       );
-      setCars(data);
-      console.log(data);
+
+      setCars(data.cars || []); // Fallback to an empty array if `data.cars` is undefined
+      setTotalPages(data.totalPages || 1); // Fallback to 1 if `data.totalPages` is undefined
     };
     fetchAllCarsData();
-  }, [search, sort]);
+  }, [search, sort, page]);
 
   const toggleView = (newView) => {
     setView(newView); // Set view to "grid" or "list"
@@ -89,7 +101,7 @@ const AllCars = () => {
                   view === "grid"
                     ? "bg-blue-600 text-white"
                     : "bg-white text-gray-600 border border-gray-300"
-                } hover:bg-blue-600 hover:text-white`}
+                } `}
               >
                 <IoGridOutline className="w-5 h-5" />
               </button>
@@ -101,7 +113,7 @@ const AllCars = () => {
                   view === "list"
                     ? "bg-blue-600 text-white"
                     : "bg-white text-gray-600 border border-gray-300"
-                } hover:bg-blue-600 hover:text-white`}
+                }`}
               >
                 <FaThList className="w-5 h-5" />
               </button>
@@ -110,12 +122,38 @@ const AllCars = () => {
         </div>
         <div className="grid grid-cols-12 gap-5 my-12">
           {view === "grid"
-            ? cars.map((car) => <CarCardGrid key={car._id} car={car} />)
-            : cars.map((car) => <CarCardTabular key={car._id} car={car} />)}
+            ? cars?.length > 0
+              ? cars.map((car) => <CarCardGrid key={car._id} car={car} />)
+              : null
+            : cars?.length > 0
+            ? cars.map((car) => <CarCardList key={car._id} car={car} />)
+            : null}
+
+          {loading && (
+            <div className="col-span-12 h-[50vh]">
+              {/* Loading state */}
+              {loading && <p>Loading...</p>}
+
+              {/* No cars found */}
+              {!loading && cars.length === 0 && (
+                <p className="text-3xl text-center text-gray-500">
+                  {search
+                    ? `No cars available for "${search}..."`
+                    : "No cars available."}
+                </p>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="flex justify-center items-center">
-          <Pagination count={10} variant="outlined" color="primary" />
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={(_, value) => setPage(value)}
+            variant="outlined"
+            color="primary"
+          />
         </div>
       </div>
     </>

@@ -1,24 +1,26 @@
 import PropTypes from "prop-types";
 import { BsFuelPump } from "react-icons/bs";
-import { GoBookmark } from "react-icons/go";
+import { GoArrowUpRight, GoBookmark } from "react-icons/go";
 import { IoCalendarOutline } from "react-icons/io5";
 import { PiClockClockwiseFill } from "react-icons/pi";
 import { TbTransformPointBottomLeft } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
+import { TiLocationOutline } from "react-icons/ti";
 
-const CarCardTabular = ({ car }) => {
+const CarCardList = ({ car }) => {
   const {
     _id,
     carModel,
     fuelType,
     description,
     availability,
+    location,
     image,
     mileage,
     rentalPrice,
     transmission,
-    bookingCount,
+    bookingsCount = 0,
     createdAt,
   } = car;
 
@@ -39,7 +41,7 @@ const CarCardTabular = ({ car }) => {
               : `https://via.placeholder.com/300`
           } // Replace with the car image URL
           alt={`Image of ${carModel}`}
-          className="w-full h-64 object-cover"
+          className="w-full h-72 object-cover"
         />
         <div className="absolute top-2 left-2 flex gap-3">
           <span
@@ -58,7 +60,7 @@ const CarCardTabular = ({ car }) => {
               : ""}
           </span>
           <span className=" bg-blue-500 text-white text-sm font-medium px-3 py-1 rounded-full">
-            {bookingCount} Booking
+            {bookingsCount} {bookingsCount === 1 ? "Booking" : "Bookings"}
           </span>
         </div>
       </div>
@@ -68,7 +70,7 @@ const CarCardTabular = ({ car }) => {
         {/* Title and Description */}
 
         <div className="mb-auto">
-          <h3 className="text-2xl font-semibold text-primary">{carModel}</h3>
+          <h3 className="text-lg font-semibold text-primary">{carModel}</h3>
           <p className="text-sm text-gray-500 truncate">
             {description || "No description available"}
           </p>
@@ -76,21 +78,24 @@ const CarCardTabular = ({ car }) => {
 
         {/* Features */}
         <div className="flex flex-col">
-          <div className="border-t border-gray-100 pt-3 mt-3 text-lg text-gray-900 flex items-center gap-3">
+          <div className="text-sm border-t border-gray-100 pt-3 mt-3 text-gray-900 flex items-center gap-3">
             <IoCalendarOutline /> <span>Added {timeAgo}</span>
           </div>
-          <div className="border-b border-t border-gray-100 py-3 my-3 text-gray-900 flex gap-8 items-center gap-3">
+          <div className="text-sm border-t border-gray-100 pt-3 mt-3 text-gray-900 flex items-center gap-3">
+            <TiLocationOutline /> <span>{location}</span>
+          </div>
+          <div className="text-sm border-b border-t border-gray-100 py-3 my-3 text-gray-900 flex gap-8 items-center">
             <span className="flex flex-col items-center">
               <PiClockClockwiseFill />
-              <span className="text-lg">{mileage.toLocaleString()} miles</span>
+              <span className="text-sm">{mileage.toLocaleString()} miles</span>
             </span>{" "}
             <span className="flex flex-col items-center">
               <BsFuelPump />
-              <span className="text-lg">{fuelType}</span>
+              <span className="text-sm">{fuelType}</span>
             </span>
             <span className="flex flex-col items-center">
               <TbTransformPointBottomLeft />
-              <span className="text-lg">{transmission}</span>
+              <span className="text-sm">{transmission}</span>
             </span>
           </div>
         </div>
@@ -114,9 +119,13 @@ const CarCardTabular = ({ car }) => {
           </p>
           <Link
             to={`/carDetails/${_id}`}
-            className="mt-4 px-4 py-2 text-sm text-blue-600 font-medium border border-blue-600 rounded hover:bg-blue-600 hover:text-white"
+            className="flex items-center gap-2 mt-4 px-4 py-2 text-sm text-blue-600 font-medium border border-blue-600 rounded hover:bg-blue-600 hover:text-white"
           >
-            Book Now <span aria-hidden="true">↗</span>
+            <span>Book Now </span>
+            <span aria-hidden="true">
+              {" "}
+              <GoArrowUpRight />
+            </span>
           </Link>
         </div>
       </div>
@@ -124,7 +133,7 @@ const CarCardTabular = ({ car }) => {
   );
 };
 
-CarCardTabular.propTypes = {
+CarCardList.propTypes = {
   car: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     carModel: PropTypes.string.isRequired,
@@ -147,4 +156,4 @@ CarCardTabular.propTypes = {
   }).isRequired,
 };
 
-export default CarCardTabular;
+export default CarCardList;
