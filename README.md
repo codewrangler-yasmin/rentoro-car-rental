@@ -3,8 +3,9 @@
 ## Purpose
 The Car Rental System is a feature-rich, user-centric platform that allows users to manage car rentals seamlessly. The platform enables users to add, update, and delete cars for rental, search and book cars based on availability, and review cars they have rented. The system provides real-time updates on car availability and booking statuses.
 
-## Live URL
-[Live Demo]((https://rentoro-car-rental.web.app/)) (Add the deployed link here once available)
+## Live URL  
+[Live Demo](https://rentoro-car-rental.web.app/)  
+
 
 ## Key Features
 1. **User Authentication**:
